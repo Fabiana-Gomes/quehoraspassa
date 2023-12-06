@@ -49,7 +49,7 @@ const ScreenLogin = () => {
     input: {
       height: 40,
       width: 300,
-      borderColor: 'white',
+      borderColor:'white',
       borderWidth: 1,
       marginBottom: 10,
       paddingHorizontal: 25,
@@ -65,7 +65,7 @@ const ScreenLogin = () => {
       borderRadius: 5,
     },
     buttonText: {
-      color: 'blue',
+      color: '#054dac',
       fontWeight: 'bold',
     },
   });

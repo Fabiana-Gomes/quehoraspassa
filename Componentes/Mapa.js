@@ -33,31 +33,33 @@ export default function Mapa() {
   };
 
   return (
-      <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          initialRegion={initialRegion}
-          showsUserLocation={true}
-          followsUserLocation={true}
-        >
-          {initialRegion && (
-            <Marker coordinate={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }} />
-          )}
-        </MapView>
-    
-        <TouchableOpacity style={styles.floatingButton} onPress={handleOverlayToggle}>
-          <Text style={styles.buttonText}>{overlayVisible ? 'Fechar' : 'Abrir'}</Text>
-        </TouchableOpacity>
-    
-        {overlayVisible && (
-          <View style={styles.overlayContainer}>
-            <View style={styles.overlayContent}>
-              <Text style={styles.overlayText}>Sobreposição com desfoque</Text>
-            </View>
-          </View>
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={initialRegion}
+        showsUserLocation={true}
+        followsUserLocation={true}
+      >
+        {initialRegion && (
+          <Marker coordinate={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }} />
         )}
-      </View>
-    );
+      </MapView>
+
+      <TouchableOpacity style={styles.floatingButton} onPress={handleOverlayToggle}>
+      </TouchableOpacity>
+
+      {overlayVisible && (
+        <View style={styles.overlayContainer}>
+          <View style={styles.overlayContent}>
+            <Image
+              source={require('../assets/profile.png')} 
+              style={[styles.overlayImage, { marginBottom: 400 }]} // Ajuste o valor conforme necessário
+              />
+          </View>
+        </View>
+      )}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -78,24 +80,31 @@ const styles = StyleSheet.create({
 
   overlayContent: {
     height: '80%',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Ajuste o valor do último componente (0.5) para a opacidade desejada
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 70,
   },
-  overlayText: {
-    fontSize: 18,
-    color: 'black',
+  overlayImage: {
+    width: 100, 
+    height: 100, 
   },
+
   floatingButton: {
     position: 'absolute',
-    top: '20%',  // Ajustado para manter o botão a 60% da página
+    top: '20%',  
     right: 20,
     width: 50,
     height: 50,
-    borderRadius: 25,
-    backgroundColor: 'white',
+    borderRadius: 50,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1,
+    borderWidth: 2,
+    borderColor: '#054dac',
+  },
+  buttonText: {
+    color: '#2642EF',
   },
 });

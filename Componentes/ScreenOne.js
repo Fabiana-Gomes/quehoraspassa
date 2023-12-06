@@ -14,7 +14,7 @@ const ScreenOne = ({ navigation }) => {
 return (
   <View style={styles.container}>
     <Image
-      source={require('../assets/logo.png')}
+      source={require('../assets/profile.png')}
       style={styles.logo}
     />
   </View>
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
   },
 });
 
