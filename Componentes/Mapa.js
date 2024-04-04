@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { Image } from 'react-native';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import pontosEmbarque from './PontosEmbarque';
+import Menu from './Menu'; // Importa o componente Menu
 
 export default function Mapa() {
   const [initialRegion, setInitialRegion] = useState(null);
@@ -52,15 +52,14 @@ export default function Mapa() {
         )}
       </MapView>
 
-      <TouchableOpacity style={styles.floatingButton} onPress={handleOverlayToggle}>
-      </TouchableOpacity>
+      <Menu handleOverlayToggle={handleOverlayToggle} />
 
       {overlayVisible && (
         <View style={styles.overlayContainer}>
           <View style={styles.overlayContent}>
             <Image
               source={require('../assets/profile.png')} 
-              style={[styles.overlayImage, { marginBottom: 400 }]} // Ajuste o valor conforme necessário
+              style={[styles.overlayImage, { marginBottom: 400 }]} 
               />
           </View>
         </View>
@@ -84,10 +83,9 @@ const styles = StyleSheet.create({
     height: '90%',
     justifyContent: 'flex-end',
   },
-
   overlayContent: {
     height: '80%',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 70,
@@ -95,23 +93,5 @@ const styles = StyleSheet.create({
   overlayImage: {
     width: 100, 
     height: 100, 
-  },
-
-  floatingButton: {
-    position: 'absolute',
-    top: '20%',  
-    right: 20,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-    borderWidth: 2,
-    borderColor: '#054dac',
-  },
-  buttonText: {
-    color: '#2642EF',
   },
 });
