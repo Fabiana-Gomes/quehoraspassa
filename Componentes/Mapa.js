@@ -3,6 +3,7 @@ import MapView, { Marker } from 'react-native-maps';
 import { Image } from 'react-native';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
+import pontosEmbarque from './PontosEmbarque';
 
 export default function Mapa() {
   const [initialRegion, setInitialRegion] = useState(null);
@@ -41,7 +42,13 @@ export default function Mapa() {
         followsUserLocation={true}
       >
         {initialRegion && (
-          <Marker coordinate={{ latitude: initialRegion.latitude, longitude: initialRegion.longitude }} />
+          pontosEmbarque.map(stop => (
+            <Marker
+              key={stop.id}
+              coordinate={{ latitude: stop.latitude, longitude: stop.longitude }}
+              title={`Parada ${stop.stopId}`}
+            />
+          ))
         )}
       </MapView>
 
